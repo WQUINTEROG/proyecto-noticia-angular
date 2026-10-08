@@ -1,0 +1,77 @@
+<!-- SECCIÓN DE TÍTULO -->
+<section class="titulo-seccion">
+  <h1>CONTÁCTANOS</h1>
+  <p>¿Tienes alguna pregunta o sugerencia? Escríbenos.</p>
+</section>
+
+<!-- SECCIÓN DE CONTACTO -->
+<section class="contacto">
+  <div class="contacto-contenedor">
+
+    <!-- FORMULARIO DE CONTACTO -->
+    <form (ngSubmit)="enviar()" class="formulario">
+
+      <!-- Campo: Nombre -->
+      <label for="nombre">Nombre</label>
+      <input 
+        type="text" 
+        id="nombre" 
+        name="nombre" 
+        [(ngModel)]="nombre" 
+        placeholder="Tu nombre">
+
+      <!-- Campo: Correo -->
+      <label for="correo">Correo</label>
+      <input 
+        type="email" 
+        id="correo" 
+        name="correo" 
+        [(ngModel)]="correo" 
+        placeholder="tu@correo.com">
+
+      <!-- Campo: Asunto -->
+      <label for="asunto">Asunto</label>
+      <input 
+        type="text" 
+        id="asunto" 
+        name="asunto" 
+        [(ngModel)]="asunto" 
+        placeholder="Asunto del mensaje">
+
+      <!-- Campo: Mensaje -->
+      <label for="mensaje">Mensaje</label>
+      <textarea 
+        id="mensaje" 
+        name="mensaje" 
+        rows="5" 
+        [(ngModel)]="mensaje" 
+        placeholder="Escribe tu mensaje aquí...">
+      </textarea>
+
+      <!-- Botón de envío -->
+      <button type="submit" class="btn-primario">Enviar</button>
+
+      <!-- Mensajes de error (solo se muestran si hay errores) -->
+      <div *ngIf="errores.length > 0" class="errores">
+        <p *ngFor="let error of errores">{{ error }}</p>
+      </div>
+
+      <!-- Mensaje de éxito (solo se muestra si el envío fue exitoso) -->
+      <div *ngIf="exito" class="exito">
+        <p>✅ ¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.</p>
+      </div>
+
+    </form>
+
+    <!-- INFORMACIÓN DE CONTACTO -->
+    <div class="info-contacto">
+      <h3>Información de contacto</h3>
+      <p>📧 correo@noticias.com</p>
+      <p>📞 +57 123 456 7890</p>
+      <p>📍 Calle 123 #45-67, Bogotá</p>
+      <p>🌐 Facebook | X | Instagram</p>
+      <p>🕐 Lunes a Viernes, 8:00 am - 5:00 pm</p>
+    </div>
+
+  </div>
+</section>

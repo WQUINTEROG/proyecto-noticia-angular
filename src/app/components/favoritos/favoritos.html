@@ -1,0 +1,46 @@
+<!-- SECCIÓN DE TÍTULO -->
+<section class="titulo-seccion">
+  <h1>MIS FAVORITOS</h1>
+  <!-- Contador dinámico: muestra cuántas noticias hay guardadas -->
+  <p>Tienes {{ noticiasFavoritas.length }} noticias guardadas</p>
+</section>
+
+<!-- SECCIÓN DE NOTICIAS FAVORITAS -->
+<section class="noticias">
+
+  <!-- Grid de cards: se muestra SOLO si hay noticias favoritas -->
+  <div class="grid-cards" *ngIf="noticiasFavoritas.length > 0; else sinFavoritos">
+
+    <!-- Recorre el array de noticias favoritas -->
+    <div *ngFor="let noticia of noticiasFavoritas" class="card">
+
+      <!-- Imagen de la noticia -->
+      <img [src]="noticia.imagen" [alt]="noticia.titulo">
+
+      <!-- Contenido de la card -->
+      <div class="card-contenido">
+
+        <!-- Título y descripción -->
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.descripcion }}</p>
+
+        <!-- Botón para ir al detalle de la noticia -->
+        <a [routerLink]="['/detalle', noticia.id]" class="btn-primario">Ver más</a>
+
+        <!-- Botón para eliminar de favoritos -->
+        <span class="eliminar" (click)="eliminar(noticia.id)">✕</span>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PLANTILLA ALTERNATIVA: se muestra cuando NO hay favoritos -->
+  <ng-template #sinFavoritos>
+    <div class="sin-favoritos">
+      <p>No tienes noticias favoritas aún.</p>
+      <a routerLink="/listado" class="btn-primario">Explorar noticias</a>
+    </div>
+  </ng-template>
+
+</section>

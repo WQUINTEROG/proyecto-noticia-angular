@@ -1,0 +1,108 @@
+<!-- ============================================ -->
+<!-- SECCIÓN HERO: Bienvenida y llamada a la acción -->
+<!-- ============================================ -->
+<section class="hero">
+
+  <!-- Título principal del sitio -->
+  <h1>Descubre las noticias que transforman tu mundo</h1>
+
+  <!-- Subtítulo descriptivo -->
+  <p>Explora contenido educativo, tecnológico, turístico y comercial.</p>
+
+  <!-- Botones de acción principales -->
+  <div class="hero-botones">
+
+    <!-- Botón para explorar el listado de noticias -->
+    <a routerLink="/listado" class="btn-primario">Explorar noticias</a>
+
+    <!-- Botón para ir a la página de contacto -->
+    <a routerLink="/contacto" class="btn-secundario">Contactar</a>
+
+  </div>
+
+</section>
+
+<!-- ============================================ -->
+<!-- SECCIÓN DE NOTICIAS DESTACADAS -->
+<!-- Muestra las 3 primeras noticias del JSON -->
+<!-- ============================================ -->
+<section class="noticias">
+
+  <h2>Noticias destacadas</h2>
+
+  <div class="grid-cards">
+
+    <!-- Recorre el array de noticiasDestacadas -->
+    <div *ngFor="let noticia of noticiasDestacadas" class="card">
+
+      <!-- Imagen de la noticia -->
+      <img [src]="noticia.imagen" [alt]="noticia.titulo">
+
+      <div class="card-contenido">
+
+        <!-- Título y descripción breve -->
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.descripcion }}</p>
+
+        <!-- Botón "Ver más" que lleva al detalle con el ID de la noticia -->
+        <a [routerLink]="['/detalle', noticia.id]" class="btn-primario">Ver más</a>
+
+        <!-- Corazón de favoritos: cambia de color según el estado -->
+        <span 
+          class="favorito" 
+          [class.activo]="esFavorito(noticia.id)" 
+          (click)="toggleFavorito(noticia.id)">
+          ❤
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================ -->
+<!-- SECCIÓN "¿POR QUÉ ELEGIRNOS?" -->
+<!-- Muestra las 3 categorías principales del sitio -->
+<!-- ============================================ -->
+<section class="elegirnos">
+
+  <h2>¿Por qué elegirnos?</h2>
+
+  <div class="grid-elegirnos">
+
+    <!-- Bloque 1: Educativas -->
+    <div class="bloque">
+      <span class="icono">📚</span>
+      <h3>Educativas</h3>
+      <p>Aprende con contenido de calidad</p>
+    </div>
+
+    <!-- Bloque 2: Tecnológicas -->
+    <div class="bloque">
+      <span class="icono">💻</span>
+      <h3>Tecnológicas</h3>
+      <p>Innovación y actualidad</p>
+    </div>
+
+    <!-- Bloque 3: Turísticas -->
+    <div class="bloque">
+      <span class="icono">🌍</span>
+      <h3>Turísticas</h3>
+      <p>Descubre nuevos destinos</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============================================ -->
+<!-- CTA FINAL: Botón para ver todo el listado -->
+<!-- ============================================ -->
+<section class="cta-final">
+
+  <a routerLink="/listado" class="btn-primario">Ver todas las noticias</a>
+
+</section>

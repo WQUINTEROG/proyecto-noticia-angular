@@ -1,0 +1,93 @@
+<!-- ============================================ -->
+<!-- SECCIÓN DE TÍTULO -->
+<!-- ============================================ -->
+<section class="titulo-seccion">
+  <h1>EXPLORA NUESTRAS NOTICIAS</h1>
+</section>
+
+<!-- ============================================ -->
+<!-- SECCIÓN DE FILTROS POR CATEGORÍA -->
+<!-- Cada botón filtra las noticias según su categoría -->
+<!-- ============================================ -->
+<section class="filtros">
+
+  <!-- Filtro: Todas -->
+  <button 
+    class="filtro" 
+    [class.activo]="categoriaActual === 'Todas'" 
+    (click)="filtrar('Todas')">
+    Todas
+  </button>
+
+  <!-- Filtro: Educativas -->
+  <button 
+    class="filtro" 
+    [class.activo]="categoriaActual === 'Educativas'" 
+    (click)="filtrar('Educativas')">
+    Educativas
+  </button>
+
+  <!-- Filtro: Tecnológicas -->
+  <button 
+    class="filtro" 
+    [class.activo]="categoriaActual === 'Tecnológicas'" 
+    (click)="filtrar('Tecnológicas')">
+    Tecnológicas
+  </button>
+
+  <!-- Filtro: Turísticas -->
+  <button 
+    class="filtro" 
+    [class.activo]="categoriaActual === 'Turísticas'" 
+    (click)="filtrar('Turísticas')">
+    Turísticas
+  </button>
+
+  <!-- Filtro: Comerciales -->
+  <button 
+    class="filtro" 
+    [class.activo]="categoriaActual === 'Comerciales'" 
+    (click)="filtrar('Comerciales')">
+    Comerciales
+  </button>
+
+</section>
+
+<!-- ============================================ -->
+<!-- SECCIÓN DE NOTICIAS FILTRADAS -->
+<!-- Muestra las noticias según el filtro seleccionado -->
+<!-- ============================================ -->
+<section class="noticias">
+
+  <div class="grid-cards">
+
+    <!-- Recorre el array de noticias filtradas -->
+    <div *ngFor="let noticia of noticiasFiltradas" class="card">
+
+      <!-- Imagen de la noticia -->
+      <img [src]="noticia.imagen" [alt]="noticia.titulo">
+
+      <div class="card-contenido">
+
+        <!-- Título y descripción breve -->
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.descripcion }}</p>
+
+        <!-- Botón "Ver más" que lleva al detalle con el ID de la noticia -->
+        <a [routerLink]="['/detalle', noticia.id]" class="btn-primario">Ver más</a>
+
+        <!-- Corazón de favoritos: cambia de color según el estado -->
+        <span 
+          class="favorito" 
+          [class.activo]="esFavorito(noticia.id)" 
+          (click)="toggleFavorito(noticia.id)">
+          ❤
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

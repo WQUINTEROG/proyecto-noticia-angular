@@ -1,0 +1,48 @@
+<!-- SECCIÓN DE DETALLE DE LA NOTICIA -->
+<section class="detalle" *ngIf="noticia; else noEncontrada">
+
+  <!-- Enlace para volver al listado -->
+  <a routerLink="/listado" class="volver">← Volver al listado</a>
+
+  <!-- Imagen principal de la noticia -->
+  <img [src]="noticia.imagen" [alt]="noticia.titulo" class="detalle-imagen">
+
+  <!-- Badge con la categoría -->
+  <span class="badge">{{ noticia.categoria }}</span>
+
+  <!-- Título completo -->
+  <h1>{{ noticia.titulo }}</h1>
+
+  <!-- Metadatos: autor y fecha -->
+  <p class="metadatos">Por: {{ noticia.autor }} | Fecha: {{ noticia.fecha }}</p>
+
+  <!-- Contenido completo en párrafos -->
+  <div class="contenido">
+    <p *ngFor="let parrafo of noticia.contenido.split('\n\n')">{{ parrafo }}</p>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="detalle-botones">
+
+    <!-- Botón de favoritos: cambia según esFavoritoActual -->
+    <button 
+      class="btn-favorito" 
+      [class.activo]="esFavoritoActual" 
+      (click)="toggleFavorito()">
+      {{ esFavoritoActual ? '❤ Quitar de favoritos' : '🤍 Agregar a favoritos' }}
+    </button>
+
+    <!-- Botón para ir a contacto -->
+    <a routerLink="/contacto" class="btn-secundario">📧 Contactar</a>
+
+  </div>
+
+</section>
+
+<!-- PLANTILLA ALTERNATIVA -->
+<ng-template #noEncontrada>
+  <div class="no-encontrada">
+    <p>Noticia no encontrada.</p>
+    <a routerLink="/listado" class="btn-primario">Volver al listado</a>
+  </div>
+</ng-template>
